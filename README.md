@@ -1,50 +1,188 @@
-# Welcome to your Expo app 👋
+# Event Management System (EMS) 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A full-stack Event Management System built with Expo React Native (frontend) and Node.js/Express (backend).
 
-## Get started
+## Project Structure
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+EMS/
+├── frontend/          # React Native/Expo app
+│   ├── app/          # Expo Router pages (file-based routing)
+│   ├── src/          # Source code
+│   │   ├── features/ # Feature-based modules
+│   │   └── shared/   # Shared components, hooks, utils
+│   ├── components/   # Reusable components
+│   ├── hooks/        # Custom React hooks
+│   └── constants/    # App constants
+│
+├── backend/          # Node.js/Express API
+│   └── src/
+│       ├── features/ # Feature-based modules
+│       └── shared/   # Shared models, middleware, config
+│
+└── docs/             # Documentation
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Getting Started
 
-## Learn more
+### Prerequisites
 
-To learn more about developing your project with Expo, look at the following resources:
+- Node.js (v18 or higher)
+- npm or yarn
+- MongoDB (for backend)
+- Expo CLI (optional, but recommended)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Installation
 
-## Join the community
+1. **Install all dependencies** (frontend + backend):
 
-Join our community of developers creating universal apps.
+   ```bash
+   npm run install:all
+   ```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   Or install separately:
+   ```bash
+   # Frontend
+   cd frontend && npm install
+
+   # Backend
+   cd backend && npm install
+   ```
+
+2. **Set up environment variables**:
+
+   - Backend: Create `backend/.env` (see `ENV_SETUP.md`)
+   - Frontend: Create `frontend/.env` (see `ENV_SETUP.md`)
+
+### Running the Project
+
+#### Option 1: Run from Root (Recommended)
+
+```bash
+# Run frontend only (same as before!)
+npm start
+
+# Run backend only
+npm run start:backend
+
+# Run both simultaneously
+npm run dev
+```
+
+#### Option 2: Run from Individual Directories
+
+```bash
+# Frontend
+cd frontend
+npm start
+# or
+npx expo start
+
+# Backend
+cd backend
+npm start
+# or for development with auto-reload
+npm run dev
+```
+
+## Development
+
+### Frontend Development
+
+The frontend uses Expo Router for file-based routing. Edit files in `frontend/app/` to create new screens.
+
+- **Start development server**: `npm start` (from root) or `cd frontend && npm start`
+- **Run on Android**: `npm run android` (from frontend directory)
+- **Run on iOS**: `npm run ios` (from frontend directory)
+- **Run on Web**: `npm run web` (from frontend directory)
+
+### Backend Development
+
+The backend uses Express.js with MongoDB. Features are organized in `backend/src/features/`.
+
+- **Start server**: `npm run start:backend` (from root) or `cd backend && npm start`
+- **Development mode** (with auto-reload): `cd backend && npm run dev`
+
+### Adding New Features
+
+Both frontend and backend follow a feature-based structure:
+
+**Frontend Feature:**
+```
+frontend/src/features/[feature-name]/
+├── components/
+├── hooks/
+├── services/
+└── types/
+```
+
+**Backend Feature:**
+```
+backend/src/features/[feature-name]/
+├── controllers/
+├── routes/
+├── services/
+└── validators/
+```
+
+See `DIRECTORY_STRUCTURE.md` for detailed structure guidelines.
+
+## Project Commands
+
+### Root Level Commands
+
+- `npm run install:all` - Install dependencies for frontend and backend
+- `npm start` - Start frontend development server
+- `npm run start:frontend` - Start frontend development server
+- `npm run start:backend` - Start backend server
+- `npm run dev` - Start both frontend and backend simultaneously
+
+### Frontend Commands (from `frontend/` directory)
+
+- `npm start` - Start Expo development server
+- `npm run android` - Run on Android
+- `npm run ios` - Run on iOS
+- `npm run web` - Run on web
+- `npm run lint` - Run ESLint
+
+### Backend Commands (from `backend/` directory)
+
+- `npm start` - Start server
+- `npm run dev` - Start server with nodemon (auto-reload)
+
+## Documentation
+
+- [`DIRECTORY_STRUCTURE.md`](./DIRECTORY_STRUCTURE.md) - Detailed directory structure and organization
+- [`QUICK_REFERENCE.md`](./QUICK_REFERENCE.md) - Quick reference guide
+- [`RUN_COMMANDS.md`](./RUN_COMMANDS.md) - Detailed run commands documentation
+- [`ENV_SETUP.md`](./ENV_SETUP.md) - Environment variables setup guide
+
+## Tech Stack
+
+### Frontend
+- **Framework**: React Native with Expo
+- **Routing**: Expo Router (file-based)
+- **Language**: TypeScript
+- **State Management**: React Hooks
+- **HTTP Client**: Axios
+
+### Backend
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT
+- **Language**: JavaScript (Node.js)
+
+## Contributing
+
+1. Create a feature branch: `git checkout -b feature/your-feature-name`
+2. Follow the feature-based directory structure
+3. Make your changes
+4. Test your changes
+5. Submit a pull request
+
+## Learn More
+
+- [Expo Documentation](https://docs.expo.dev/)
+- [Expo Router](https://docs.expo.dev/router/introduction)
+- [Express.js](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/docs/)
